@@ -19,22 +19,21 @@ chrome.tabs.query({
   // Example:
   var url = tab.url;
   // ... do something with url variable
-  console.log(url);
   if (url.indexOf('youtube.com') > -1) {
     var id = url.split("?v=")[1].substring(0, 11);
-    sendVideoId(id)
+    sendVideoId(id, tab.title)
   }
 });
 
 
 // POST the data to the server using XMLHttpRequest
-function sendVideoId(id) {
+function sendVideoId(id, title) {
 
   // The data to send to the server
   var data = {
     video_id: id,
     type: 'video',
-    title: 'A sample title',
+    title: title,
     created_at: new Date().getTime()
   };
 
